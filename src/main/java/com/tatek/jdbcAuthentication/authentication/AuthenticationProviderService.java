@@ -30,6 +30,7 @@ public class AuthenticationProviderService implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
         List<Customer> customer = customerRepository.findByEmail(username);
+
         if (customer.size() > 0) {
             if (passwordEncoder.matches(password, customer.get(0).getPassword())) {
                 List<GrantedAuthority> authorities = new ArrayList<>();
